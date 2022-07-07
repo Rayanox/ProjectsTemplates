@@ -2,30 +2,22 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<parent>
+	
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.7.0</version>
+    </parent>
+	<groupId>com.rb.templates</groupId>
+	<artifactId>batch-template</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
 
-<!--		<relativePath/> &lt;!&ndash; lookup parent from repository &ndash;&gt;-->
-		<groupId>upgrade.karavel.framework</groupId>
-		<artifactId>pom.root</artifactId>
-		<version>3.1</version>
-	</parent>
-	<groupId>upgrade.karavel.services</groupId>
-	<artifactId>seo.linking.zt.batch</artifactId>
-	<version>3.0.0-pmvc-be-SNAPSHOT</version>
-
-	<name>Batch de Linking</name>
-	<description>Batch qui créer des liens entres zones géographiques (et/ou logements) et les insère en DB afin d'être exploités par le Front (via mediation SEO)</description>
+	<name>Template batch</name>
+	<description>Template using spring batch</description>
 
 	<properties>
-		<java.version>8</java.version>
-
-		<url.referentiel.precalcul>1.3.0</url.referentiel.precalcul>
-		<url.referentiel.generator.version>2.1.0</url.referentiel.generator.version>
+		<java.version>11</java.version>
 		<spring.boot.version>2.7.0</spring.boot.version>
-		<cxf.version>3.4.5</cxf.version>
-		<catalogue.sejour.api.version>1.265</catalogue.sejour.api.version>
-<!--		<framework.integration.camel.extension.version>2.1.2</framework.integration.camel.extension.version>-->
-		<common.mail.version>2.0.6</common.mail.version>
 	</properties>
 
 
@@ -51,81 +43,6 @@
 			<artifactId>h2</artifactId>
 			<version>2.1.214</version>
 		</dependency>
-
-
-
-		<!-- ******************* -->
-		<!-- Dependances Karavel -->
-		<!-- ******************* -->
-
-
-		<dependency>
-			<groupId>com.karavel.services</groupId>
-			<artifactId>catalogue.sejour.api</artifactId>
-			<version>${catalogue.sejour.api.version}</version>
-		</dependency>
-
-<!--		<dependency>-->
-<!--			<groupId>upgrade.karavel.framework</groupId>-->
-<!--			<artifactId>framework.integration.camel.extension</artifactId>-->
-<!--			<version>${framework.integration.camel.extension.version}</version>-->
-<!--		</dependency>-->
-
-        <dependency>
-            <groupId>upgrade.karavel.framework</groupId>
-            <artifactId>commons.mail</artifactId>
-            <version>${common.mail.version}</version>
-        </dependency>
-
-		<dependency>
-			<groupId>upgrade.karavel.framework</groupId>
-			<artifactId>integration-camel-spring-boot-starter</artifactId>
-			<type>jar</type>
-			<version>3.0.2</version>
-		</dependency>
-
-		<dependency>
-			<groupId>upgrade.karavel.framework</groupId>
-			<artifactId>integration-camel-spring-boot-starter</artifactId>
-			<type>jar</type>
-			<version>3.0.2</version>
-		</dependency>
-
-		<dependency>
-			<groupId>upgrade.karavel.services</groupId>
-			<artifactId>url.referentiel.precalcul.api</artifactId>
-			<version>${url.referentiel.precalcul}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>upgrade.karavel.services</groupId>
-			<artifactId>url.referentiel.generator</artifactId>
-			<version>${url.referentiel.generator.version}</version>
-		</dependency>
-
-
-
-
-
-
-
-
-		<dependency>
-			<groupId>org.apache.cxf</groupId>
-			<artifactId>cxf-spring-boot-starter-jaxws</artifactId>
-			<version>${cxf.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.cxf</groupId>
-			<artifactId>cxf-rt-frontend-jaxws</artifactId>
-			<version>${cxf.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.cxf</groupId>
-			<artifactId>cxf-rt-features-logging</artifactId>
-			<version>${cxf.version}</version>
-		</dependency>
-
 	</dependencies>
 
 	<dependencyManagement>
@@ -136,32 +53,9 @@
 				<version>${spring.boot.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
-				<exclusions>
-					<exclusion>
-						<groupId>org.elasticsearch</groupId>
-						<artifactId>elasticsearch</artifactId>
-					</exclusion>
-				</exclusions>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
-
-	<profiles>
-		<profile>
-			<id>tomcat-dev</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-
-			<build>
-				<resources>
-					<resource>
-						<directory>${basedir}/tomcat/lib</directory>
-					</resource>
-				</resources>
-			</build>
-		</profile>
-	</profiles>
 
 
 	<build>
